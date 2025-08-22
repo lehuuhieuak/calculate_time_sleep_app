@@ -158,8 +158,8 @@ class _SleepCycleCalculatorScreenState extends State<SleepCycleCalculatorScreen>
       // Add time to fall asleep
       DateTime sleepTime = baseTime.add(Duration(minutes: _fallAsleepMinutes));
       
-      // Calculate 4-6 sleep cycles (6-9 hours of sleep)
-      for (int cycles = 4; cycles <= 6; cycles++) {
+      // Calculate 1-6 sleep cycles (1-9 hours of sleep)
+      for (int cycles = 1; cycles <= 6; cycles++) {
         DateTime wakeTime = sleepTime.add(Duration(minutes: cycles * _sleepCycleDuration));
         times.add(TimeOfDay.fromDateTime(wakeTime));
       }
@@ -168,8 +168,8 @@ class _SleepCycleCalculatorScreenState extends State<SleepCycleCalculatorScreen>
       // Subtract time to fall asleep
       DateTime wakeTime = baseTime.subtract(Duration(minutes: _fallAsleepMinutes));
       
-      // Calculate 4-6 sleep cycles (6-9 hours of sleep)
-      for (int cycles = 4; cycles <= 6; cycles++) {
+      // Calculate 1-6 sleep cycles (1-9 hours of sleep)
+      for (int cycles = 1; cycles <= 6; cycles++) {
         DateTime bedTime = wakeTime.subtract(Duration(minutes: cycles * _sleepCycleDuration));
         times.add(TimeOfDay.fromDateTime(bedTime));
       }
@@ -462,7 +462,7 @@ class _SleepCycleCalculatorScreenState extends State<SleepCycleCalculatorScreen>
                       
                       ...List.generate(_calculatedTimes.length, (index) {
                         final time = _calculatedTimes[index];
-                        final cycles = _isBedtime ? index + 4 : 6 - index;
+                        final cycles = _isBedtime ? index + 1 : 6 - index;
                         final duration = _getSleepDuration(cycles);
                         
                         return Card(
